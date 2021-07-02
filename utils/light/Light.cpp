@@ -1,0 +1,20 @@
+//
+// Created by tushar on 7/2/21.
+//
+
+#include <cstdio>
+#include "Light.h"
+
+using namespace std;
+
+Light::Light(const Point &pos, const double r, const double g, const double b) {
+  this->pos = pos;
+  color[0] = r;
+  color[1] = g;
+  color[2] = b;
+}
+
+void Light::printLight() {
+  printf("position: %f %f %f\n", pos.x, pos.y, pos.z);
+  printf("color: %f %f %f\n", color[0], color[1], color[2]);
+}
