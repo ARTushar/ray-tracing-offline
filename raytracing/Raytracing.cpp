@@ -95,7 +95,7 @@ void Raytracing::parse_input_file() {
 }
 
 Raytracing::Raytracing(): fovY{120}, aspect{1}, z_near{1}, z_far{3000.0} {
-  input_file_name = "../test-cases/3/scene.txt";
+  input_file_name = "../test-cases/1/scene.txt";
   input_file.open(input_file_name);
   parse_input_file();
   image = new bitmap_image(width, width);
@@ -173,7 +173,7 @@ void Raytracing::capture(const CameraHandler &ch) {
         }
       }
       if(min_pos_t != 1e9) {
-        closest_shape->intersect(ray, color, 2, lights, objects);
+        closest_shape->intersect(ray, color, 3, lights, objects);
         image->set_pixel(i, j,color[0] * 255, color[1] * 255, color[2] * 255);
       }
     }

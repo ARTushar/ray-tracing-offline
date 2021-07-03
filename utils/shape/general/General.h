@@ -18,6 +18,10 @@ public:
 
     double intersect(const Ray &r, double *color, int level, const vector<Light *> lights,
                      const vector<Shape *> objects) override;
+    double intersect_ray(const Ray &r);
+
+    Point get_normal_at(const Point &ins_point) override;
+    bool check_condition(const Point &ins_point);
 };
 
 

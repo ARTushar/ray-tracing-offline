@@ -48,6 +48,10 @@ Shape::illuminate(const Ray &r, double *color, int level, const vector<Light *> 
 
   Point normal = get_normal_at(ins_point);
 
+//  if (normal.dot(r.dir) > 0) {
+//    normal = normal * -1.0;
+//  }
+
   for(auto light: lights) {
     Point l_dir = light->pos - ins_point;
     auto distance = sqrt(l_dir.dot(l_dir));
@@ -57,7 +61,7 @@ Shape::illuminate(const Ray &r, double *color, int level, const vector<Light *> 
     bool in_shadow = false;
     auto dummy_color = new double[3];
 
-    // checking if in shadow
+//     checking if in shadow
     for(auto obj: objects) {
 //      printf("shape: %s\n", obj->shapeName.c_str());
       auto t = obj->intersect(l_ray, dummy_color, 0, lights, objects);

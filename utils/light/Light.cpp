@@ -24,7 +24,7 @@ void Light::draw() {
   glPushMatrix(); {
     glTranslatef(pos.x, pos.y, pos.z);
     DrawShape::setColor(color[0], color[1], color[2]);
-    DrawShape::drawSphere(4, 50, 30, 3);
+    DrawShape::drawSphere(2, 50, 30, 3);
   }
   glPopMatrix();
 }
