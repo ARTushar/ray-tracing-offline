@@ -12,12 +12,11 @@ class CameraHandler {
 private:
     double step;
     double angle;
-    Point position;
-    Point look, up, right;
     static Point convert_to_unit(Point& a);
 
 public:
-
+    Point position;
+    Point look, up, right;
     CameraHandler();
     CameraHandler(Point pos, Point l, Point u, Point r, double step, double angle);
 

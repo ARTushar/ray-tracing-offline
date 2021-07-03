@@ -15,6 +15,9 @@ public:
     General(const double a, const double b, const double c, const double d,const double e, const double f, const double g, const double h, const double i, const double j, const Point ref, const double length, const double width, const double height);
     void draw() override;
     void printShape() override;
+
+    double intersect(const Ray &r, double *color, int level, const vector<Light *> lights,
+                     const vector<Shape *> objects) override;
 };
 
 

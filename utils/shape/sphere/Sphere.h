@@ -13,7 +13,13 @@ public:
     Sphere(Point center, double radius);
     void draw() override;
 
+    double intersect(const Ray &r, double *color, int level, const vector<Light *> lights,
+                     const vector<Shape *> objects) override;
     void printShape() override;
+
+    Point get_normal_at(const Point &ins_point) override;
+
+    static void test();
 };
 
 

@@ -1,6 +1,8 @@
 #include "opengl/Opengl.h"
 #include "raytracing/Raytracing.h"
 #include "utils/drawShape/DrawShape.h"
+#include "utils/shape/sphere/Sphere.h"
+#include "utils/shape/floor/Floor.h"
 #include <GL/glut.h>
 
 CameraHandler ch;
@@ -62,21 +64,8 @@ void keyboardListener(unsigned char key, int x, int y) {
     case '6':
       ch.tilt_cc();
       break;
-    case 'q':
-      break;
-    case 'w':
-      break;
-    case 'e':
-      break;
-    case 'r':
-      break;
-    case 'a':
-      break;
-    case 's':
-      break;
-    case 'd':
-      break;
-    case 'f':
+    case '0':
+      rt.capture(ch);
       break;
     default:
       break;
@@ -173,7 +162,7 @@ void init() {
   glLoadIdentity();
 
   //give PERSPECTIVE parameters
-  gluPerspective(120,	1,	1,	3000.0);
+  gluPerspective(rt.fovY,	rt.aspect,	rt.z_near,	rt.z_far);
   //field of view in the Y (vertically)
   //aspect ratio that determines the field of view in the X direction (horizontally)
   //near distance
@@ -182,7 +171,7 @@ void init() {
 
 void draw(int argc, char **argv) {
   glutInit(&argc,argv);
-  glutInitWindowSize(500, 500);
+  glutInitWindowSize(rt.width, rt.width);
   glutInitWindowPosition(0, 0);
   glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGB);	//Depth, Double buffer, RGB color
 
@@ -206,4 +195,6 @@ void draw(int argc, char **argv) {
 
 int main(int argc, char **argv) {
   draw(argc, argv);
+//  Sphere::test();
+//    Floor::test();
 }

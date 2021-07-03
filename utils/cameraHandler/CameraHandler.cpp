@@ -7,7 +7,7 @@
 #include "../constants/Constants.h"
 
 CameraHandler::CameraHandler() {
-  position = {0, -200, 0};
+  position = {0, -200, 100};
   up = {0, 0, 1};
   double val = 1/sqrt(2);
   right = {1, 0, 0};

@@ -12,17 +12,20 @@
 #include "../utils/command/Command.h"
 #include "../utils/shape/Shape.h"
 #include "../utils/light/Light.h"
+#include "../utils/cameraHandler/CameraHandler.h"
+#include "../utils/image/bitmap_image.hpp"
 
 using namespace std;
 
 class Raytracing {
 public:
-    int lor, total_objects, total_lights;
-    double width;
+    int lor, total_objects, total_lights, width;
+    double fovY, aspect, z_near, z_far;
     static bool DEBUG;
 private:
     vector<Shape*> objects;
     vector<Light*> lights;
+    bitmap_image *image;
     std::string input_file_name;
     std::ifstream input_file;
     void parse_command(const COMMAND &command);
@@ -35,6 +38,7 @@ public:
     Raytracing();
     void drawObjects();
     void parse_input_file();
+    void capture(const CameraHandler &ch);
     void print_inputs();
     virtual ~Raytracing();
 };

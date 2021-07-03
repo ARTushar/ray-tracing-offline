@@ -7,7 +7,12 @@
 
 
 #include <string>
+#include <vector>
 #include "../point/Point.h"
+#include "../ray/Ray.h"
+#include "../light/Light.h"
+
+using namespace std;
 
 class Shape {
 public:
@@ -19,11 +24,16 @@ public:
     int shine;
 
     Shape();
-    virtual void draw() = 0;
+    virtual void draw();
     virtual void printShape();
+    virtual double
+    intersect(const Ray &r, double *color, int level, const vector<Light *> lights, const vector<Shape *> objects);
     void setColor(const double r, const double g, const double b);
     void setCoefficients(const double am, const double di, const double sp, const double rco);
-
+    void illuminate(const Ray &r, double *color, int level, const vector<Light *> lights, const vector<Shape *> objects,
+                    const Point &ins_point);
+    virtual Point get_normal_at(const Point &ins_point);
+    void clipColor(double *color);
 };
 
 

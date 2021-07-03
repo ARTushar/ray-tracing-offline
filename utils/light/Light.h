@@ -15,6 +15,7 @@ public:
 
   Light(const Point &pos, const double r, const double g, const double b);
   void printLight();
+  void draw();
 };
 
 

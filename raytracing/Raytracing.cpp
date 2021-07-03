@@ -7,6 +7,9 @@
 #include "../utils/shape/general/General.h"
 #include "../utils/shape/triangle/Triangle.h"
 #include "../utils/shape/floor/Floor.h"
+#include "../utils/image/bitmap_image.hpp"
+#include "../utils/constants/Constants.h";
+#include "../utils/ray/Ray.h"
 
 
 bool Raytracing::DEBUG = false;
@@ -91,13 +94,15 @@ void Raytracing::parse_input_file() {
   addFloor();
 }
 
-Raytracing::Raytracing() {
-  input_file_name = "../test-cases/1/scene.txt";
+Raytracing::Raytracing(): fovY{120}, aspect{1}, z_near{1}, z_far{3000.0} {
+  input_file_name = "../test-cases/3/scene.txt";
   input_file.open(input_file_name);
   parse_input_file();
+  image = new bitmap_image(width, width);
 }
 
 Raytracing::~Raytracing() {
+  delete image;
   input_file.close();
 }
 
@@ -119,7 +124,7 @@ void Raytracing::print_inputs() {
 void Raytracing::addFloor() {
   Shape *temp = new Floor(1000, 20, 1, 1, 1);
   temp->setColor(0, 0, 0);
-  temp->setCoefficients(.6, .2, .1, .1);
+  temp->setCoefficients(.25, .25, .25, .25);
   temp->shine = 5;
 
   objects.push_back(temp);
@@ -132,5 +137,48 @@ void Raytracing::drawObjects() {
       obj->draw();
     }
   }
+  for(auto light: lights) {
+    light->draw();
+  }
+}
+
+void Raytracing::capture(const CameraHandler &ch) {
+  auto i_width = width;
+
+  printf("Capturing started\n");
+  image->clear();
+  auto planeDistance = (width / 2.0) / tan(fovY / 2 * pi / 180);
+  auto top_left = ch.position + ch.look * planeDistance - ch.right * (width / 2) + ch.up * (width / 2);
+
+  auto du = width / i_width;
+  auto dv = width / i_width;
+
+  top_left = top_left + ch.right * (0.5 * du) - ch.up * (0.5 * dv);
+
+  for(int i = 1; i <= i_width; i++) {
+    for(int j = 1; j <= i_width; j++) {
+      auto cur_pixel = top_left + ch.right * du * i - ch.up * dv * j;
+      auto dir = cur_pixel - ch.position;
+      dir = dir.normalize();
+      Ray ray(ch.position, dir);
+      auto *color = new double[3];
+      auto *dummy_color = new double[3];
+      double min_pos_t = 1e9;
+      Shape *closest_shape;
+      for(auto obj: objects) {
+        auto t = obj->intersect(ray, dummy_color, 0, lights, objects);
+        if(t > 0 && t < min_pos_t) {
+          min_pos_t = t;
+          closest_shape = obj;
+        }
+      }
+      if(min_pos_t != 1e9) {
+        closest_shape->intersect(ray, color, 2, lights, objects);
+        image->set_pixel(i, j,color[0] * 255, color[1] * 255, color[2] * 255);
+      }
+    }
+  }
+  printf("Capturing done\n");
+  image->save_image("output/output.bmp");
 }
 

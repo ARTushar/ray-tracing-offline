@@ -4,6 +4,7 @@
 
 #include <cstdio>
 #include "Light.h"
+#include "../drawShape/DrawShape.h"
 
 using namespace std;
 
@@ -17,4 +18,13 @@ Light::Light(const Point &pos, const double r, const double g, const double b) {
 void Light::printLight() {
   printf("position: %f %f %f\n", pos.x, pos.y, pos.z);
   printf("color: %f %f %f\n", color[0], color[1], color[2]);
+}
+
+void Light::draw() {
+  glPushMatrix(); {
+    glTranslatef(pos.x, pos.y, pos.z);
+    DrawShape::setColor(color[0], color[1], color[2]);
+    DrawShape::drawSphere(4, 50, 30, 3);
+  }
+  glPopMatrix();
 }

@@ -26,3 +26,8 @@ General::General(const double a, const double b, const double c, const double d,
   this->height = height;
   this->width = width;
 }
+
+double General::intersect(const Ray &r, double *color, int level, const vector<Light *> lights,
+                          const vector<Shape *> objects) {
+  return Shape::intersect(r, color, level, lights, objects);
+}

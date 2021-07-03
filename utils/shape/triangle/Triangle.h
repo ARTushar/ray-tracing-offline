@@ -11,13 +11,16 @@
 class Triangle: public Shape {
 private:
     Point p1, p2, p3;
+    double rayIntersectsTriangle(const Ray &ray);
 public:
     Triangle(const Point p1, const Point p2, const Point p3);
-
     void draw() override;
-
     void printShape() override;
 
+    double intersect(const Ray &r, double *color, int level, const vector<Light *> lights,
+                     const vector<Shape *> objects) override;
+
+    Point get_normal_at(const Point &ins_point) override;
 };
 
 
