@@ -3,8 +3,8 @@
 //
 
 #include <cstdio>
-#include "Light.h"
-#include "../drawShape/DrawShape.h"
+#include "1605070_Light.h"
+#include "1605070_DrawShape.h"
 
 using namespace std;
 

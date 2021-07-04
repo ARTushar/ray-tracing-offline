@@ -3,8 +3,8 @@
 //
 
 #include <cmath>
-#include "CameraHandler.h"
-#include "../constants/Constants.h"
+#include "1605070_CameraHandler.h"
+#include "1605070_Constants.h"
 
 CameraHandler::CameraHandler() {
   position = {0, -200, 100};

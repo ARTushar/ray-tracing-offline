@@ -2,7 +2,7 @@
 // Created by tushar on 3/12/21.
 //
 #include <string>
-#include "../point/Point.h"
+#include "1605070_Point.h"
 
 #ifndef INC_1605070_CAMERAHANDLER_H
 #define INC_1605070_CAMERAHANDLER_H

@@ -4,7 +4,7 @@
 #include <string>
 #include <cmath>
 #include <GL/glut.h>
-#include "../point/Point.h"
+#include "1605070_Point.h"
 #ifndef INC_1605070_DRAWSHAPE_H
 #define INC_1605070_DRAWSHAPE_H
 

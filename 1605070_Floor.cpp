@@ -2,8 +2,8 @@
 // Created by tushar on 7/2/21.
 //
 
-#include "Floor.h"
-#include "../../drawShape/DrawShape.h"
+#include "1605070_Floor.h"
+#include "1605070_DrawShape.h"
 #include <GL/glut.h>
 
 void Floor::draw() {

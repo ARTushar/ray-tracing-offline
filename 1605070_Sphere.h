@@ -6,7 +6,7 @@
 #define RAYTRACING_SPHERE_H
 
 
-#include "../Shape.h"
+#include "1605070_Shape.h"
 
 class Sphere: public Shape {
 public:

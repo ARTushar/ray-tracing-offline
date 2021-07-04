@@ -2,10 +2,10 @@
 // Created by tushar on 7/2/21.
 //
 
-#include "Sphere.h"
+#include "1605070_Sphere.h"
 #include <GL/glut.h>
 #include <vector>
-#include "../../drawShape/DrawShape.h"
+#include "1605070_DrawShape.h"
 
 using namespace std;
 

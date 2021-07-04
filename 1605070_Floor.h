@@ -6,7 +6,7 @@
 #define RAYTRACING_FLOOR_H
 
 
-#include "../Shape.h"
+#include "1605070_Shape.h"
 
 class Floor: public Shape {
 private:

@@ -8,9 +8,9 @@
 
 #include <string>
 #include <vector>
-#include "../point/Point.h"
-#include "../ray/Ray.h"
-#include "../light/Light.h"
+#include "1605070_Point.h"
+#include "1605070_Ray.h"
+#include "1605070_Light.h"
 
 using namespace std;
 

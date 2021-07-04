@@ -2,8 +2,8 @@
 // Created by tushar on 3/14/21.
 //
 
-#include "DrawShape.h"
-#include "../constants/Constants.h"
+#include "1605070_DrawShape.h"
+#include "1605070_Constants.h"
 
 
 double DrawShape::cr = 1;

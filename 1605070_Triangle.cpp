@@ -2,8 +2,8 @@
 // Created by tushar on 7/2/21.
 //
 
-#include "Triangle.h"
-#include "../../drawShape/DrawShape.h";
+#include "1605070_Triangle.h"
+#include "1605070_DrawShape.h";
 
 void Triangle::draw() {
   DrawShape::setColor(color[0], color[1], color[2]);

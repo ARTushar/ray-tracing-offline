@@ -2,7 +2,7 @@
 // Created by tushar on 7/2/21.
 //
 
-#include "General.h"
+#include "1605070_General.h"
 
 void General::draw() {
 

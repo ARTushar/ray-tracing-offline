@@ -6,7 +6,7 @@
 #define RAYTRACING_GENERAL_H
 
 
-#include "../Shape.h"
+#include "1605070_Shape.h"
 
 class General: public Shape {
 private:

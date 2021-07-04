@@ -1,8 +1,5 @@
-#include "opengl/Opengl.h"
-#include "raytracing/Raytracing.h"
-#include "utils/drawShape/DrawShape.h"
-#include "utils/shape/sphere/Sphere.h"
-#include "utils/shape/floor/Floor.h"
+#include "1605070_Raytracing.h"
+#include "1605070_DrawShape.h"
 #include <GL/glut.h>
 
 CameraHandler ch;

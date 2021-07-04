@@ -9,11 +9,11 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include "../utils/command/Command.h"
-#include "../utils/shape/Shape.h"
-#include "../utils/light/Light.h"
-#include "../utils/cameraHandler/CameraHandler.h"
-#include "../utils/image/bitmap_image.hpp"
+#include "1605070_Command.h"
+#include "1605070_Shape.h"
+#include "1605070_Light.h"
+#include "1605070_CameraHandler.h"
+#include "1605070_bitmap_image.hpp"
 
 using namespace std;
 

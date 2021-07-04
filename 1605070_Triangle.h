@@ -6,7 +6,7 @@
 #define RAYTRACING_TRIANGLE_H
 
 
-#include "../Shape.h"
+#include "1605070_Shape.h"
 
 class Triangle: public Shape {
 private:

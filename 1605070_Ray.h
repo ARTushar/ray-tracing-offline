@@ -6,7 +6,7 @@
 #define RAYTRACING_RAY_H
 
 
-#include "../point/Point.h"
+#include "1605070_Point.h"
 
 class Ray {
 public:

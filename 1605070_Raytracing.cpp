@@ -2,14 +2,14 @@
 // Created by tushar on 7/2/21.
 //
 
-#include "Raytracing.h"
-#include "../utils/shape/sphere/Sphere.h"
-#include "../utils/shape/general/General.h"
-#include "../utils/shape/triangle/Triangle.h"
-#include "../utils/shape/floor/Floor.h"
-#include "../utils/image/bitmap_image.hpp"
-#include "../utils/constants/Constants.h";
-#include "../utils/ray/Ray.h"
+#include "1605070_Raytracing.h"
+#include "1605070_Sphere.h"
+#include "1605070_General.h"
+#include "1605070_Triangle.h"
+#include "1605070_Floor.h"
+#include "1605070_bitmap_image.hpp"
+#include "1605070_Constants.h"
+#include "1605070_Ray.h"
 
 
 bool Raytracing::DEBUG = false;
