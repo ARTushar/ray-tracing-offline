@@ -52,7 +52,7 @@ Shape::illuminate(const Ray &r, double *color, int level, const vector<Light *> 
 //    normal = normal * -1.0;
 //  }
 
-  for(auto light: lights) {
+  for(auto &light: lights) {
     Point l_dir = light->pos - ins_point;
     auto distance = sqrt(l_dir.dot(l_dir));
     l_dir = l_dir.normalize();
@@ -62,7 +62,7 @@ Shape::illuminate(const Ray &r, double *color, int level, const vector<Light *> 
     auto dummy_color = new double[3];
 
 //     checking if in shadow
-    for(auto obj: objects) {
+    for(auto &obj: objects) {
 //      printf("shape: %s\n", obj->shapeName.c_str());
       auto t = obj->intersect(l_ray, dummy_color, 0, lights, objects);
       if(t > 0 && t < distance) {
@@ -70,6 +70,7 @@ Shape::illuminate(const Ray &r, double *color, int level, const vector<Light *> 
         break;
       }
     }
+    delete [] dummy_color;
 
     if(!in_shadow) {
       auto lamb_val = max(l_ray.dir.dot(normal), 0.0);
@@ -95,7 +96,7 @@ Shape::illuminate(const Ray &r, double *color, int level, const vector<Light *> 
     auto *ref_color = new double[3];
     double min_pos_t = 1e9;
     Shape *closest_shape;
-    for(auto obj: objects) {
+    for(auto &obj: objects) {
       auto t = obj->intersect(ref_ray, dummy_color, 0, lights, objects);
       if(t > 0 && t < min_pos_t) {
         min_pos_t = t;
@@ -108,8 +109,11 @@ Shape::illuminate(const Ray &r, double *color, int level, const vector<Light *> 
         color[i] += ref_color[i] * coefficients[3];
       }
     }
+    delete [] dummy_color;
+    delete [] ref_color;
   }
   clipColor(color);
+  delete [] original_color;
 }
 
 Point Shape::get_normal_at(const Point &) {
