@@ -103,6 +103,12 @@ Raytracing::Raytracing(): fovY{120}, aspect{1}, z_near{1}, z_far{3000.0} {
 
 Raytracing::~Raytracing() {
   delete image;
+  for(auto &obj: objects) {
+    delete obj;
+  }
+  for(auto &light: lights) {
+    delete light;
+  }
   input_file.close();
 }
 
@@ -110,12 +116,12 @@ void Raytracing::print_inputs() {
   cout << "Level of Recursion: " << lor << endl;
   cout << "Dimensions: " << width << "x" << width << endl;
   cout << endl << "Total objects: " << total_objects << endl;
-  for(auto obj: objects) {
+  for(auto &obj: objects) {
     cout << endl;
     obj->printShape();
   }
   printf("Total light sources: %d\n", total_lights);
-  for(auto light: lights) {
+  for(auto &light: lights) {
     cout << endl;
     light->printLight();
   }
@@ -132,12 +138,12 @@ void Raytracing::addFloor() {
 
 void Raytracing::drawObjects() {
 
-  for(auto obj: objects) {
+  for(auto &obj: objects) {
     if (obj->shapeName != "General") {
       obj->draw();
     }
   }
-  for(auto light: lights) {
+  for(auto &light: lights) {
     light->draw();
   }
 }
@@ -165,7 +171,7 @@ void Raytracing::capture(const CameraHandler &ch) {
       auto *dummy_color = new double[3];
       double min_pos_t = 1e9;
       Shape *closest_shape;
-      for(auto obj: objects) {
+      for(auto &obj: objects) {
         auto t = obj->intersect(ray, dummy_color, 0, lights, objects);
         if(t > 0 && t < min_pos_t) {
           min_pos_t = t;
@@ -176,6 +182,8 @@ void Raytracing::capture(const CameraHandler &ch) {
         closest_shape->intersect(ray, color, 3, lights, objects);
         image->set_pixel(i, j,color[0] * 255, color[1] * 255, color[2] * 255);
       }
+      delete [] dummy_color;
+      delete [] color;
     }
   }
   printf("Capturing done\n");

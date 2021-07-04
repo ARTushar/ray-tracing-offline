@@ -40,7 +40,7 @@ void Shape::draw() {
 void
 Shape::illuminate(const Ray &r, double *color, int level, const vector<Light *> lights, const vector<Shape *> objects,
                   const Point &ins_point) {
-  auto *original_color = new double[3];
+  auto original_color = new double[3];
   for(auto i = 0; i < 3; i++) {
     original_color[i] = color[i];
     color[i] *= coefficients[0];
@@ -70,6 +70,7 @@ Shape::illuminate(const Ray &r, double *color, int level, const vector<Light *> 
         break;
       }
     }
+    delete [] dummy_color;
 
     if(!in_shadow) {
       auto lamb_val = max(l_ray.dir.dot(normal), 0.0);
@@ -91,8 +92,8 @@ Shape::illuminate(const Ray &r, double *color, int level, const vector<Light *> 
     Point ref_ray_start = ins_point + ref_ray_dir;
     Ray ref_ray(ref_ray_start, ref_ray_dir);
 
-    auto *dummy_color = new double[3];
-    auto *ref_color = new double[3];
+    auto dummy_color = new double[3];
+    auto ref_color = new double[3];
     double min_pos_t = 1e9;
     Shape *closest_shape;
     for(auto obj: objects) {
@@ -108,8 +109,11 @@ Shape::illuminate(const Ray &r, double *color, int level, const vector<Light *> 
         color[i] += ref_color[i] * coefficients[3];
       }
     }
+    delete [] ref_color;
+    delete [] dummy_color;
   }
   clipColor(color);
+  delete [] original_color;
 }
 
 Point Shape::get_normal_at(const Point &) {

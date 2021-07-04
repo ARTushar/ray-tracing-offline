@@ -78,7 +78,7 @@ void Floor::test() {
   dir = dir.normalize();
   Ray ray({-12, 10, 1}, dir);
 
-  auto color = new double [3];
+//  auto color = new double [3];
 //  auto ins = floor1.intersect(ray, color, 1, 0, vector<Shape *>());
 //  printf("Ins t: %f\n", ins);
 //  auto ins_point = ray.start + ray.dir * ins;
